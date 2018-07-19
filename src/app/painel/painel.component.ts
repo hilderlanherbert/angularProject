@@ -1,6 +1,7 @@
+import { Component, OnInit } from '@angular/core';
+
 import { FRASES } from './frase-mock';
 import { Frase } from './../shared/frase.model';
-import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-painel',
@@ -11,7 +12,7 @@ export class PainelComponent implements OnInit {
 
   public frases: Frase[] =  FRASES;
 
-  public resposta: string;
+  public resposta: string = '';
 
   public rodada: number = 0;
 
@@ -20,29 +21,34 @@ export class PainelComponent implements OnInit {
   public progresso: number = 0;
 
   constructor() {
-    this.rodadaFrase = this.frases[this.rodada]
-    console.log(this.rodadaFrase); 
+   this.atualizaRodada();
    }
 
   ngOnInit() {
   }
 
  public atualizaReposta(resposta:Event): void{
-    this.resposta = (<HTMLInputElement>resposta.target).value
+    this.resposta = (<HTMLInputElement>resposta.target).value;
   }
 
   public verificarResposta(): void {
 
-    if(this.rodadaFrase.frasePt == this.resposta) {
+    if (this.rodadaFrase.frasePt == this.resposta) {
       alert('A tradução está correta!!!')
       this.rodada++;
-      this.rodadaFrase = this.frases[this.rodada];
-      this.progresso = this.progresso + (100 / this.frases.length)
-    } else {
-      alert('A tradução está incorreta :/')
-    }
+      this.atualizaRodada();
+      this.progresso = this.progresso + (100 / this.frases.length);
+      this.resposta = '';
 
-    
+    } else {
+
+      alert('A tradução está incorreta :/')
+
+    }
+  }
+
+  public atualizaRodada(): void {
+    this.rodadaFrase = this.frases[this.rodada];
   }
 
 }
