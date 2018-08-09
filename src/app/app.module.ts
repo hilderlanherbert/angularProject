@@ -21,4 +21,4 @@ import { ProgressoComponent } from './progresso/progresso.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
