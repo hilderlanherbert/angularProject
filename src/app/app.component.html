@@ -3,21 +3,28 @@
 <div *ngIf="jogoEmAndamento; else fimDeJogo" >
     <app-painel (encerrarJogo)="encerrarJogo($event)"></app-painel>
 </div>
-<ng-tempalete #fimDeJogo>
-    <div *ngIf="tipoEncerramento === derrota; else fimDeJogoVitoria" class="container" style="margin-top: 50px">
+<ng-template #fimDeJogo>
+    <div *ngIf="tipoEncerramento === 'derrota'; else fimDeJogoVitoria" class="container" style="margin-top: 50px">
         <div class="row">
             <div class="col">
-                <h3 style="color: red">Tente novamente!!</h3>
+                <h3 style="color: red">Você pode fazer melhor :/</h3>
+                <button class="btn btn-primary" (click)="reiniciarJogo()">Jogar novamente</button>
             </div>
         </div>
     </div>
-</ng-tempalete>
-<ng-tempalete #fimDeJogoVitoria>
-        <div *ngIf="tipoEncerramento === derrota; fimDeJogoVitoria" class="container" style="margin-top: 50px">
-            <div class="row">
-                <div class="col">
-                    <h3 style="color: green">Parabéns, você ganhou!!</h3>
-                </div>
+</ng-template>
+<ng-template #fimDeJogoVitoria>
+    <div class="container" style="margin-top: 50px">
+        <div class="row">
+            <div class="col">
+                <h3 style="color: green">Parabéns! Você venceu :D</h3>
+                <button class="btn btn-primary" (click)="reiniciarJogo()">Jogar novamente</button>
             </div>
         </div>
-    </ng-tempalete>
+    </div>
+</ng-template>
+
+
+
+
+ 
